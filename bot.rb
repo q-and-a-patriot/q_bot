@@ -8,7 +8,7 @@ client = Twitter::REST::Client.new do |config|
 end
 loop do
   "Hello! Time for some tweeting!"
-  puts "Tweet Number: "+num
+  puts "Tweet Number: "+num.to_s
   num = num + 1
   tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
 
