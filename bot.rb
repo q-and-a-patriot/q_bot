@@ -21,5 +21,5 @@ loop do
 
   puts t.text
   puts "Going to sleep for 150 seconds"
-  sleep(10)
+  sleep(150)
 end
