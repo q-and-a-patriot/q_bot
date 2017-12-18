@@ -1,7 +1,5 @@
 require 'twitter'
 
-tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
-
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = ENV['consumer_key']
   config.consumer_secret = ENV['consumer_secret']
@@ -9,12 +7,12 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = ENV['access_token_secret']
 end
 
-f = File.open("iter")
-iter = f.read
-f.close
+tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
 
-client.update(tweet+"_"+iter.strip)
+t = client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
+iter = t.text[-1, 1]
+iter = iter.to_i + 1
 
-f = File.open("iter", "w")
-f.write(iter.to_i+1)
-f.close
+t = client.update(tweet+"_"+iter.to_s)
+
+puts t.text
