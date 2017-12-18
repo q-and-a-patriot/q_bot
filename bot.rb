@@ -1,4 +1,5 @@
 require 'twitter'
+$stdout.sync
 num = 1
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = ENV['consumer_key']
