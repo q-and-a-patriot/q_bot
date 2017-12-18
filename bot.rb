@@ -1,6 +1,6 @@
 require 'twitter'
 
-tweet = "Hellow America!"
+tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
 
 client = Twitter::REST::Client.new do |config|
   config.consumer_key = ENV['consumer_key']
@@ -10,11 +10,5 @@ client = Twitter::REST::Client.new do |config|
 end
 
 client.update(tweet)
-
-client.update("Tweeting a list")
-
-arr = ["Hello", "America!", "Testing!"]
-
-arr.each { |t| client.update(t) }
 
 
