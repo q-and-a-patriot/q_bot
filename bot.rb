@@ -20,6 +20,6 @@ loop do
   t = client.update(tweet+"_"+iter.to_s)
 
   puts t.text
-  puts "Going to sleep for 150 seconds"
-  sleep(150)
+  puts "Going to sleep for 600 seconds"
+  sleep(600)
 end
