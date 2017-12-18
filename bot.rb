@@ -7,14 +7,13 @@ client = Twitter::REST::Client.new do |config|
   config.access_token = ENV['access_token']
   config.access_token_secret = ENV['access_token_secret']
 end
+t = client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
 loop do
   "Hello! Time for some tweeting!"
   puts "Tweet Number: "+num.to_s
   num = num + 1
   tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
 
-  #t = client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
-  # Save a call by reusing tweet
   iter = t.text[-1, 1]
   iter = iter.to_i + 1
 
