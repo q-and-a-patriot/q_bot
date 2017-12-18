@@ -13,7 +13,8 @@ loop do
   num = num + 1
   tweet = [*('a'..'z'),*('0'..'9')].shuffle[0,8].join
 
-  t = client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
+  #t = client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
+  # Save a call by reusing tweet
   iter = t.text[-1, 1]
   iter = iter.to_i + 1
 
