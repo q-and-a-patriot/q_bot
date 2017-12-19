@@ -31,11 +31,13 @@ class QBot
 
   def start(post_num=0)
     loop do
+      puts "Posting Q MSG # #{post_num}"
       post = @map[post_num]
       post_q_msg post
       post_num += 1
       post_num %= 352
-      puts "Posting Q MSG # #{post_num}"
+      sleep(2700)
+
     end
   end
 
@@ -44,7 +46,7 @@ class QBot
       puts "Posting Q Line"
       puts q_line
       post_thread q_line
-      sleep(1600)
+      sleep(60)
 
     end
   end
