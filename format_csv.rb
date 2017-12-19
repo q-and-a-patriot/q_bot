@@ -15,7 +15,7 @@ class FormatMap
                   "#CBTS", "#FolllowTheWhiteRabbit", "#QClearance",
                   "#TickTock", "#Breadcrumbs", "#TheStormIsUponUs",
                   "#TheStormIsHere", "#CalmBeforeTheStorm", "#DonaldTrump",
-                  "#Redpill", "DrainTheSwamp", "#MuellerTime", "#Mueller",
+                  "#Redpill", "#DrainTheSwamp", "#MuellerTime", "#Mueller",
                   "#AmericaFirst", "@realdonaldtrump", "#Sessions",
                   "#TheStormIsComing", "#TheStormHasArrived",
                   "#SealedIndictments", "#TheGreatAwakening"]
