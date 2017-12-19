@@ -11,6 +11,14 @@ class FormatMap
     @data = CSV.read(location)
     @transposed = @data.transpose
     @msg_start = []
+    @hash_tags = ["#Trump", "#MAGA", "#Qanon", "#Q", "#TheStorm",
+                  "#CBTS", "#FolllowTheWhiteRabbit", "#QClearance",
+                  "#TickTock", "#Breadcrumbs", "#TheStormIsUponUs",
+                  "#TheStormIsHere", "#CalmBeforeTheStorm", "#DonaldTrump",
+                  "#Redpill", "DrainTheSwamp", "#MuellerTime", "#Mueller",
+                  "#AmericaFirst", "@realdonaldtrump", "#Sessions",
+                  "#TheStormIsComing", "#TheStormHasArrived",
+                  "#SealedIndictments", "#TheGreatAwakening"]
 
     @transposed[1].each_with_index do |cell, i|
       if cell.nil?
@@ -62,15 +70,22 @@ class FormatMap
 )
     hashtags ="#Trump #MAGA #Qanon #Q #TheStorm #CBTS #FolllowTheWhiteRabbit #QClearance #TickTock #Breadcrumbs \n\n"
     if q_msg_text
-      tweet_arr.concat split_and_format_msg(hashtags + q_msg_text, first_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(5) + q_msg_text, first_line)
     end
     if concise_answer
-      tweet_arr.concat split_and_format_msg(concise_answer, expl_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(4) + concise_answer, expl_line)
     end
     if long_answer
-      tweet_arr.concat split_and_format_msg(long_answer, further_detail_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(4) + long_answer, further_detail_line)
     end
     return tweet_arr
+  end
+
+  def get_hashtags(num)
+    if num > @hash_tags.length
+      num = @hash_tags.length
+    end
+    return @hash_tags.shuffle()[0,num].join(" ") + "\n\n"
   end
 
   def split_and_format_msg(msg, prepend_line)
@@ -111,8 +126,8 @@ end
 
 output = FormatMap.new(file_location)
 
-# out = output.threaded_msg(3)[1]
-# print out
+out = output.threaded_msg(3)[1]
+print out
 
 out = output.format_all
 
