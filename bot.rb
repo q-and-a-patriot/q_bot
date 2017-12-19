@@ -20,10 +20,14 @@ class QBot
   def post_thread(arr)
     first_tweet = arr[0]
     to_reply = @client.update(first_tweet)
-
+    puts "Printing first tweet in Q_line:"
+    puts first_tweet
     arr[1..-1].each do | tweet |
-      puts "Printing Tweet #{tweet}"
-      sleep(15+rand(61))
+      puts "Printing Tweet"
+      puts tweet
+      wait = 15+rand(61)
+      puts "Sleeping for #{wait} seconds"
+      sleep(wait)
 
       to_reply = @client.update(tweet, in_reply_to_status_id: to_reply.id)
     end
@@ -36,7 +40,9 @@ class QBot
       post_q_msg post
       post_num += 1
       post_num %= 352
-      sleep( 2700 + rand(8100) )
+      wait = 2700 + rand(8100)
+      puts "Sleeping for #{wait} seconds"
+      sleep( wait )
 
     end
   end
@@ -46,7 +52,9 @@ class QBot
       puts "Posting Q Line"
       puts q_line
       post_thread q_line
-      sleep( 241 + rand(402) )
+      wait = 241 + rand(402)
+      puts "Sleeping for #{wait} seconds"
+      sleep(wait)
 
     end
   end
@@ -58,11 +66,12 @@ class QBot
 
   def parse_number_from_last_tweet
     t = get_last_tweet
-    num = t.split(" ")[0].split("_")[-2].to_i - 1
+    num = t.split(" ")[0].split("_")[-2].to_i
     if num == -1
       puts "Can't locate proper tweet, choosing random to begin."
       return rand(348)
     else
+      puts "Beginning with q_post #{num}"
       num
     end
   end
@@ -75,7 +84,7 @@ end
 
 bot = QBot.new("map.json")
 
-#bot.start(bot.parse_number_from_last_tweet)
+bot.start(bot.parse_number_from_last_tweet)
 #puts bot.parse_number_from_last_tweet
 
-print bot.map[2]
+p#rint bot.map[2]
