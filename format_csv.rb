@@ -135,17 +135,17 @@ output = FormatMap.new(file_location)
 out = output.threaded_msg(3)[1]
 puts out
 
-# out = output.format_all
+out = output.format_all
 
-# json_hash = out.to_json
+json_hash = out.to_json
 
-# puts json_hash
+puts json_hash
 
-# file = File.open("map.json", "w")
+file = File.open("map.json", "w")
 
-# file.write json_hash
+file.write json_hash
 
-# file.close
+file.close
 
 # TODO
 # Comment everything
