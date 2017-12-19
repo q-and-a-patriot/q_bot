@@ -36,7 +36,7 @@ class QBot
       post_q_msg post
       post_num += 1
       post_num %= 352
-      sleep( 2700 + rand(4512) )
+      sleep( 2700 + rand(8100) )
 
     end
   end
@@ -59,7 +59,12 @@ class QBot
   def parse_number_from_last_tweet
     t = get_last_tweet
     num = t.split(" ")[0].split("_")[-2].to_i - 1
-    num
+    if num == -1
+      puts "Can't locate proper tweet, choosing random to begin."
+      return rand(348)
+    else
+      num
+    end
   end
 
 end
@@ -71,3 +76,4 @@ end
 bot = QBot.new("map.json")
 
 bot.start(bot.parse_number_from_last_tweet)
+#puts bot.parse_number_from_last_tweet
