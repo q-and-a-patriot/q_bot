@@ -65,10 +65,10 @@ class FormatMap
       tweet_arr.concat split_and_format_msg(hashtags + q_msg_text, first_line)
     end
     if concise_answer
-      tweet_arr.concat split_and_format_msg("[EXPLANATION] " + concise_answer, expl_line)
+      tweet_arr.concat split_and_format_msg(concise_answer, expl_line)
     end
     if long_answer
-      tweet_arr.concat split_and_format_msg("[FURTHER DETAIL] " + long_answer, further_detail_line)
+      tweet_arr.concat split_and_format_msg(long_answer, further_detail_line)
     end
     return tweet_arr
   end
