@@ -60,13 +60,13 @@ class QBot
   end
 
   def get_last_tweet
-    t = @client.user_timeline('Q_AND_A_PATRIOT', count: 1)[0]
+    t = @client.user_timeline('MommaDeplorable', count: 1)[0]
     return t.text
   end
 
   def parse_number_from_last_tweet
     t = get_last_tweet
-    num = t.split(" ")[0].split("_")[-2].to_i
+    num = t.split("\n")[1].split("_")[0].to_i
     if num == -1
       puts "Can't locate proper tweet, choosing random to begin."
       return rand(348)
@@ -87,4 +87,4 @@ bot = QBot.new("map.json")
 bot.start(bot.parse_number_from_last_tweet)
 #puts bot.parse_number_from_last_tweet
 
-p#rint bot.map[2]
+#print bot.map[2]
