@@ -23,7 +23,7 @@ class QBot
 
     arr[1..-1].each do | tweet |
       puts "Printing Tweet #{tweet}"
-      sleep(3)
+      sleep(15+rand(61))
 
       to_reply = @client.update(tweet, in_reply_to_status_id: to_reply.id)
     end
@@ -36,7 +36,7 @@ class QBot
       post_q_msg post
       post_num += 1
       post_num %= 352
-      sleep(2700)
+      sleep( 2700 + rand(4512) )
 
     end
   end
@@ -46,7 +46,7 @@ class QBot
       puts "Posting Q Line"
       puts q_line
       post_thread q_line
-      sleep(60)
+      sleep( 241 + rand(402) )
 
     end
   end
