@@ -16,9 +16,10 @@ class FormatMap
                   "#TickTock", "#Breadcrumbs", "#TheStormIsUponUs",
                   "#TheStormIsHere", "#CalmBeforeTheStorm", "#DonaldTrump",
                   "#Redpill", "#DrainTheSwamp", "#MuellerTime", "#Mueller",
-                  "#AmericaFirst", "@realdonaldtrump", "#Sessions",
+                  "#AmericaFirst", "#NYT", "#Sessions",
                   "#TheStormIsComing", "#TheStormHasArrived",
-                  "#SealedIndictments", "#TheGreatAwakening"]
+                  "#SealedIndictments", "#TheGreatAwakening", "#HillaryClinton",
+                  "#baking"]
 
     @transposed[1].each_with_index do |cell, i|
       if cell.nil?
@@ -60,23 +61,28 @@ class FormatMap
     concise_answer = line[1]
     long_answer = line[2]
 
-    first_line = %(BEGIN_Q_MSG_#{msg_num+1}_#{index+1}
-#{full_msg[0][3]}
-#{full_msg[0][1]}
+    q_hello_arr = ["Q Time!", "Q Anon...", "Q Says..."]
+    expl_arr = ["And what does that mean?", "Here's what I think that means:", "Here's an explanation..."]
+    detail_arr = ["Even more details!", "Let's dig deeper!!!", "Rabbithole time! :)"]
+
+    first_line = %(#{msg_num+1}_#{index+1}_#{[*('a'..'z')].shuffle[0]}
 )
-    expl_line = %(EXPL_Q_MSG_#{msg_num+1}_#{index+1}
+    expl_line = %(#{msg_num+1}_#{index+1}_#{[*('a'..'z')].shuffle[0]}
 )
-    further_detail_line = %(DETAIL_Q_MSG_#{msg_num+1}_#{index+1}
+    further_detail_line = %(#{msg_num+1}_#{index+1}_#{[*('a'..'z')].shuffle[0]}
 )
     hashtags ="#Trump #MAGA #Qanon #Q #TheStorm #CBTS #FolllowTheWhiteRabbit #QClearance #TickTock #Breadcrumbs \n\n"
     if q_msg_text
-      tweet_arr.concat split_and_format_msg(get_hashtags(5) + q_msg_text, first_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(5) + q_msg_text,
+      q_hello_arr.shuffle()[0] + "\n" + first_line)
     end
     if concise_answer
-      tweet_arr.concat split_and_format_msg(get_hashtags(4) + concise_answer, expl_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(4) + concise_answer,
+      expl_arr.shuffle()[0] + "\n" + expl_line)
     end
     if long_answer
-      tweet_arr.concat split_and_format_msg(get_hashtags(4) + long_answer, further_detail_line)
+      tweet_arr.concat split_and_format_msg(get_hashtags(4) + long_answer,
+      detail_arr.shuffle()[0] + "\n" + further_detail_line)
     end
     return tweet_arr
   end
@@ -127,19 +133,19 @@ end
 output = FormatMap.new(file_location)
 
 out = output.threaded_msg(3)[1]
-print out
+puts out
 
-out = output.format_all
+# out = output.format_all
 
-json_hash = out.to_json
+# json_hash = out.to_json
 
-puts json_hash
+# puts json_hash
 
-file = File.open("map.json", "w")
+# file = File.open("map.json", "w")
 
-file.write json_hash
+# file.write json_hash
 
-file.close
+# file.close
 
 # TODO
 # Comment everything
