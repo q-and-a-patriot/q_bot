@@ -84,7 +84,7 @@ end
 
 bot = QBot.new("map.json")
 
-bot.start(15)
+bot.start(76)
 #puts bot.parse_number_from_last_tweet
 
 # print bot.map[2]
